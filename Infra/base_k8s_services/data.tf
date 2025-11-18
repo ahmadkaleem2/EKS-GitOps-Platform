@@ -17,3 +17,12 @@ data "terraform_remote_state" "eks" {
     region = "us-west-2"
   }
 }
+
+data "aws_eks_cluster_auth" "eks" {
+  name = data.terraform_remote_state.eks.outputs.cluster_name
+}
+
+data "aws_eks_cluster" "eks" {
+  name = data.terraform_remote_state.eks.outputs.cluster_name
+  
+}

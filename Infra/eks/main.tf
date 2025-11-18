@@ -9,16 +9,17 @@ module "eks" {
     coredns                = {}
     kube-proxy             = {}
     vpc-cni                = {
-      before_compute = true
+      # Fixed Node not ready due to vpc cni not installed.
+      resolve_conflicts_on_create = "OVERWRITE"
+      before_compute              = true
     }
-    cert-manager = {}
+    # cert-manager = {}
     metrics-server = {}
   }
   
   # Optional
   endpoint_public_access = true
 
-  # Optional: Adds the current caller identity as an administrator via cluster access entry
   enable_cluster_creator_admin_permissions = true
 
   vpc_id                   = data.terraform_remote_state.vpc.outputs.vpc_id
@@ -28,6 +29,9 @@ module "eks" {
   # EKS Managed Node Group(s)
   eks_managed_node_groups = {
     eks-spot = {
+      launch_template_tags = {
+        "map-mig" = "mig000000000"
+      }
       # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       ami_type       = "AL2023_x86_64_STANDARD"
       instance_types = ["t3.medium"]

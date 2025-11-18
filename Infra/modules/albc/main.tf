@@ -10,11 +10,12 @@ resource "helm_release" "aws_load_balancer_controller" {
   create_namespace = true
   cleanup_on_fail = true
 
-  dynamic "set" {
-    for_each = var.albc_values
-    content {
-      name  = each.key
-      value = each.value
-    }
-  }
+  set = [for k,v in var.albc_values : {
+    name  = k
+    value = v
+  }]
+}
+
+locals {
+  
 }

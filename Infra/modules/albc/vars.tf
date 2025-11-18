@@ -1,6 +1,9 @@
 variable "albc_values" {
     type        = map(string)
     description = "A map of key-value pairs to set on the ALBC."
+    default = {
+
+    }
 }
 
 variable "namespace" {
