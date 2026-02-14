@@ -19,7 +19,7 @@ resource "aws_iam_role" "this" {
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
           StringEquals = {
-            "${var.cluster_oidc_issuer_url}:sub" = "system:serviceaccount:aws-load-balancer-controller:aws-load-balancer-controller",
+            "${var.cluster_oidc_issuer_url}:sub" = "system:serviceaccount:kube-system:ebs-csi-controller-sa",
 
           }
         }
