@@ -1,9 +1,9 @@
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "21.6.0"
+  version = "21.15.1"
 
   name               = "Ahmad-EKS"
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.35"
 
   addons = {
     coredns                = {}
@@ -13,7 +13,6 @@ module "eks" {
       resolve_conflicts_on_create = "OVERWRITE"
       before_compute              = true
     }
-    # cert-manager = {}
     metrics-server = {}
   }
   
@@ -33,11 +32,11 @@ module "eks" {
         "map-mig" = "mig000000000"
       }
       # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
-      ami_type       = "AL2023_x86_64_STANDARD"
-      instance_types = ["t3.medium"]
+      ami_type       = "AL2023_ARM_64_STANDARD"
+      instance_types = ["t4g.small"]
       capacity_type  = "SPOT"
       min_size     = 1
-      max_size     = 1
+      max_size     = 2
       desired_size = 1
       iam_role_additional_policies = {
         "ssm_agent": "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"

@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: eks-gitops-platform
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git'
+    targetRevision: main
+    path: .
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argocd  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
