@@ -6,12 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
-    targetRevision: main
+    repoURL: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
+    targetRevision: 1.7.1
     # path: apps/aws-lbc/aws-lbc
     helm:
       valueFiles:
-        - ./values/values.yaml
+        - values/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: aws-load-balancer-controller
