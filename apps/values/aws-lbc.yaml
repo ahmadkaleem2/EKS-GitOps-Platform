@@ -1,1 +1,7 @@
-# TBD
+clusterName: Ahmad-EKS
+region: us-east-1
+serviceAccount:
+  create: true
+  name: aws-load-balancer-controller
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::387867038403/role/aws-load-balancer-controller-role
