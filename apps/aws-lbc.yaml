@@ -1,43 +1,43 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: aws-load-balancer-controller
-  namespace: argocd
-spec:
-  project: default
-  sources:
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: aws-load-balancer-controller
+#   namespace: argocd
+# spec:
+#   project: default
+#   sources:
 
-  # Helm chart source
-  - repoURL: https://aws.github.io/eks-charts
-    chart: aws-load-balancer-controller
-    targetRevision: 1.7.1
-    # createNamespace: true
-    helm:
-      values: |
-        vpcId: vpc-08b8891aea7cec453
-        clusterName: Ahmad-EKS
-        region: us-east-1
-        serviceAccount:
-          create: true
-          name: aws-load-balancer-controller
-          annotations:
-            eks.amazonaws.com/role-arn: arn:aws:iam::387867038403/role/albc-role-Ahmad-EKS
-      # valueFiles:
-      #   - $values/apps/values/aws-lbc.yaml
+#   # Helm chart source
+#   - repoURL: https://aws.github.io/eks-charts
+#     chart: aws-load-balancer-controller
+#     targetRevision: 1.7.1
+#     # createNamespace: true
+#     helm:
+#       values: |
+#         vpcId: vpc-08b8891aea7cec453
+#         clusterName: Ahmad-EKS
+#         region: us-east-1
+#         serviceAccount:
+#           create: true
+#           name: aws-load-balancer-controller
+#           annotations:
+#             eks.amazonaws.com/role-arn: arn:aws:iam::387867038403/role/albc-role-Ahmad-EKS
+#       # valueFiles:
+#       #   - $values/apps/values/aws-lbc.yaml
 
-  # Git repo source for values
-  - repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
-    targetRevision: main
-    ref: values
-    path: .
+#   # Git repo source for values
+#   - repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
+#     targetRevision: main
+#     ref: values
+#     path: .
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: aws-load-balancer-controller
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: aws-load-balancer-controller
 
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
