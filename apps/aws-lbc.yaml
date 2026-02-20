@@ -11,7 +11,7 @@ spec:
     path: apps/aws-lbc/aws-lbc
     helm:
       valueFiles:
-        - values/values.yaml
+        - ./values/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: aws-load-balancer-controller
