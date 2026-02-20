@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
     targetRevision: main
-    path: apps/aws-lbc/aws-lbc
+    # path: apps/aws-lbc/aws-lbc
     helm:
       valueFiles:
         - ./values/values.yaml
