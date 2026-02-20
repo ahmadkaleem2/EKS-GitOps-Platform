@@ -11,6 +11,7 @@ spec:
   - repoURL: https://aws.github.io/eks-charts
     chart: aws-load-balancer-controller
     targetRevision: 1.7.1
+    createNamespace: true
     helm:
       values: |
         clusterName: Ahmad-EKS
@@ -37,5 +38,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions: 
-      - CreateNamespace=true
