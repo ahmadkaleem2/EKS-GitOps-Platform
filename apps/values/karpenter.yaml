@@ -1,3 +1,4 @@
+replicas: 1
 clusterName: Ahmad-EKS
 clusterEndpoint: https://2385B5B289F15128AE6BE9EBBD499385.gr7.us-east-1.eks.amazonaws.com
 serviceAccount:
