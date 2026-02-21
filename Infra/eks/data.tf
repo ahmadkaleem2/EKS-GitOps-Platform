@@ -2,7 +2,7 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
 
   config = {
-    bucket = "ahmad-terraform-backend1"
+    bucket = "terraform-backend-ahmad"
     key    = "Infra/networking.tfstate"
     region = "us-east-1"
   }

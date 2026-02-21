@@ -1,7 +1,7 @@
 terraform {
   
   backend "s3" {
-    bucket = "ahmad-terraform-backend1"
+    bucket = "terraform-backend-ahmad"
     key    = "Infra/networking.tfstate"
     region = "us-east-1"
   }
