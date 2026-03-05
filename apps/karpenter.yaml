@@ -48,7 +48,7 @@ spec:
   source:
     repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
     targetRevision: main
-    path: additional-resources/karpenter
+    path: apps/additional-resources/karpenter
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
