@@ -12,7 +12,7 @@ spec:
   # Helm chart source
   - repoURL: oci://public.ecr.aws/karpenter/karpenter
     chart: karpenter
-    targetRevision: 1.9
+    targetRevision: "1.9"
     # createNamespace: true
     helm:
       valueFiles:
