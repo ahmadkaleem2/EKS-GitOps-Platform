@@ -42,7 +42,7 @@ kind: EC2NodeClass
 metadata:
   name: default
 spec:
-  role: Ahmad-EKS-cluster-20260219091155961100000001
+  role: eks-spot-eks-node-group-20260306052030807200000002
   subnetSelectorTerms:
     - tags:
         kubernetes.io/cluster/Ahmad-EKS: owned
