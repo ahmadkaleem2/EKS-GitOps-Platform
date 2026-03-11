@@ -12,9 +12,16 @@ prometheus:
             - key: karpenter.sh/nodepool
               operator: DoesNotExist
 
-alertmanager:
-  enabled: false
 
+alertmanager:
+  alertmanagerSpec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: karpenter.sh/nodepool
+              operator: DoesNotExist
 grafana:
   affinity:
     nodeAffinity:
