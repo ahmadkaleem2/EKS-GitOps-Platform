@@ -1,0 +1,21 @@
+prometheus:
+  prometheusSpec:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: karpenter.sh/nodepool
+              operator: DoesNotExist
+
+alertmanager:
+  enabled: false
+
+grafana:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: karpenter.sh/nodepool
+            operator: DoesNotExist
