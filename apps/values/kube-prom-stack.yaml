@@ -1,12 +1,12 @@
 prometheus:
-  prometheusSpec:
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-          - matchExpressions:
-            - key: karpenter.sh/nodepool
-              operator: DoesNotExist
+  # prometheusSpec:
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #       - matchExpressions:
+    #         - key: karpenter.sh/nodepool
+    #           operator: DoesNotExist
 
 
 
