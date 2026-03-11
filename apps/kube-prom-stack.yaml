@@ -1,35 +1,35 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: kube-prom-stack
-  namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
-spec:
-  project: default
-  sources:
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: kube-prom-stack
+#   namespace: argocd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "2"
+# spec:
+#   project: default
+#   sources:
 
-  # Helm chart source
-  - repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
-    targetRevision: "82.10.1"
-    helm:
-      valueFiles:
-        - $values/apps/values/kube-prom-stack.yaml
+#   # Helm chart source
+#   - repoURL: https://prometheus-community.github.io/helm-charts
+#     chart: kube-prometheus-stack
+#     targetRevision: "82.10.1"
+#     helm:
+#       valueFiles:
+#         - $values/apps/values/kube-prom-stack.yaml
 
-  # Git repo source for values
-  - repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
-    targetRevision: main
-    ref: values
-    path: .
+#   # Git repo source for values
+#   - repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
+#     targetRevision: main
+#     ref: values
+#     path: .
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: kube-prom-stack
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: kube-prom-stack
 
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
