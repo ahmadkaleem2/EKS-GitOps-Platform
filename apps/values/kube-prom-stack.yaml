@@ -1,8 +1,4 @@
 prometheus:
-  operators:
-    enabled: true
-  deployment:
-    enabled: true
   prometheusSpec:
     affinity:
       nodeAffinity:
