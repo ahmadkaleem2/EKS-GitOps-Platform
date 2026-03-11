@@ -11,3 +11,17 @@ resource "helm_release" "this" {
         file("${path.module}/helm_values/values.yaml")
   ]
 }
+
+# resource "kubernetes_manifest" "bootstrap" {
+#   manifest = yamldecode(file("${path.module}/manifests/bootstrap.yaml"))
+
+
+#   depends_on = [ helm_release.this ]
+# }
+
+
+# resource "kubernetes_manifest" "argocd_secret" {
+#   manifest = yamldecode(file("${path.module}/manifests/argocd_secret.yaml"))
+
+#   depends_on = [ helm_release.this ]
+# }

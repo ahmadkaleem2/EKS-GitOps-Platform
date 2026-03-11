@@ -9,6 +9,7 @@
                 "iam:AddRoleToInstanceProfile",
                 "iam:TagInstanceProfile",
                 "iam:GetInstanceProfile",
+                "iam:ListInstanceProfiles",
                 "iam:CreateInstanceProfile",
                 "ssm:GetParameter",
                 "ec2:DescribeImages",

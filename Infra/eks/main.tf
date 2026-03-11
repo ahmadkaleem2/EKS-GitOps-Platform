@@ -18,7 +18,7 @@ module "eks" {
   
   # Optional
   endpoint_public_access = true
-
+  create_kms_key = true
   enable_cluster_creator_admin_permissions = true
 
   vpc_id                   = data.terraform_remote_state.vpc.outputs.vpc_id

@@ -12,4 +12,9 @@
     enable_nat_gateway = true
     single_nat_gateway = true
 
+    private_subnet_tags = {
+      "kubernetes.io/cluster/Ahmad-EKS" = "owned"
+    }
+
+
   }

@@ -27,7 +27,7 @@ resource "aws_iam_role" "albc" {
 
 resource "aws_iam_policy" "albc" {                                                                                                       
   policy = file("${path.module}/custom_policies/load_balancer_controller.json")
-  name = "aws_load_balancer_controller_policy"        
+  name = "Ahmad_EKS_aws_load_balancer_controller_policy"        
 }
 
 
@@ -63,7 +63,7 @@ resource "aws_iam_role" "external_dns" {
 
 resource "aws_iam_policy" "external_dns" {                                                                                                       
   policy = file("${path.module}/custom_policies/external_dns.json")
-  name = "external_dns_policy"        
+  name = "Ahmad_EKS_external_dns_policy"        
 }
 
 
@@ -101,7 +101,7 @@ resource "aws_iam_role" "fluent_bit" {
 
 resource "aws_iam_policy" "fluent_bit" {                                                                                                       
   policy = file("${path.module}/custom_policies/fluent-bit.json")
-  name = "fluent_bit_policy"        
+  name = "Ahmad_EKS_fluent_bit_policy"        
 }
 
 
@@ -138,7 +138,7 @@ resource "aws_iam_role" "karpenter" {
 
 resource "aws_iam_policy" "karpenter" {                                                                                                       
   policy = file("${path.module}/custom_policies/karpenter.json")
-  name = "karpenter_policy"        
+  name = "Ahmad_EKS_karpenter_policy"        
 }
 
 
