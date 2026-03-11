@@ -1,7 +1,7 @@
 replicas: 1
 settings:
   clusterName: Ahmad-EKS
-  clusterEndpoint: https://89E3F14CF28151CA8EC8807C6A083CBF.gr7.us-east-1.eks.amazonaws.com
+  clusterEndpoint: https://1A3BE73A13B6096B605A9E051DCB32FF.gr7.us-east-1.eks.amazonaws.com
 serviceAccount:
   create: true
   name: karpenter
