@@ -25,8 +25,8 @@ create_infra() {
 
   aws eks update-kubeconfig --region us-east-1 --name Ahmad-EKS
 
-  argocd-initial-password=$(kubectl -n argocd get secret argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d)
-  echo "ArgoCD initial admin password: $argocd-initial-password"
+  argocd_initial_password=$(kubectl -n argocd get secret argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d)
+  echo "ArgoCD initial admin password: $argocd_initial_password"
 
   kubectl apply -f ./manifests/
 
