@@ -14,7 +14,7 @@ prometheus:
 
 prometheusOperator:
   admissionWebhooks:
-    enabled: false
+    enabled: true
 
 alertmanager:
   enabled: false
