@@ -34,4 +34,5 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true # added due to huge crd annotation last-applied config, causes error 
+      # - ApplyOutOfSyncOnly=true
       # - Replace=true
