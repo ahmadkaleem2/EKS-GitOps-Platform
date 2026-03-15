@@ -33,5 +33,5 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      # - ServerSideApply=true # added due to huge crd annotation last-applied config, causes error 
-      # - Replace=true
+      - ServerSideApply=true # added due to huge crd annotation last-applied config, causes error 
+      - Replace=true
