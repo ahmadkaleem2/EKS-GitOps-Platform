@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aws-for-fluent-bit
+  name: external-dns
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
@@ -10,13 +10,14 @@ spec:
   sources:
 
   # Helm chart source
-  - repoURL: https://aws.github.io/eks-charts
-    chart: aws-for-fluent-bit
-    targetRevision: 0.2.0
+  - repoURL: https://kubernetes-sigs.github.io/external-dns/
+    chart: external-dns
+    targetRevision: 1.14.5
     # createNamespace: true
     helm:
+
       valueFiles:
-        - $values/apps/values/fluent-bit.yaml
+        - $values/add_ons/values/external-dns.yaml
 
   # Git repo source for values
   - repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
@@ -26,7 +27,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: aws-for-fluent-bit
+    namespace: external-dns
 
   syncPolicy:
     automated:

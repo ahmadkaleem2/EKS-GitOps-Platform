@@ -16,7 +16,7 @@ spec:
     # createNamespace: true
     helm:
       valueFiles:
-        - $values/apps/values/karpenter.yaml
+        - $values/add_ons/values/karpenter.yaml
 
   # Git repo source for values
   - repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
@@ -48,7 +48,7 @@ spec:
   source:
     repoURL: git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git
     targetRevision: main
-    path: apps/additional-resources/karpenter
+    path: add_ons/additional-resources/karpenter
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
