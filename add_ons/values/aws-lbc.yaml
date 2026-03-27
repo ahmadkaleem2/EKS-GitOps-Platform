@@ -1,0 +1,9 @@
+vpcId: vpc-049598ad3c8c01634
+clusterName: Ahmad-EKS
+replicaCount: 1
+region: us-east-1
+serviceAccount:
+  create: true
+  name: aws-load-balancer-controller
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::387867038403:role/albc-role-Ahmad-EKS

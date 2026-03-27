@@ -1,0 +1,13 @@
+source: ingress
+provider: aws
+aws-zone-type: private
+txt-owner-id: ahmad-eks
+registry: txt
+domain-filter: ahmad.com
+region: us-east-1
+serviceAccount:
+  create: true
+  name: external-dns
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::387867038403:role/external-dns-role-Ahmad-EKS
+    
