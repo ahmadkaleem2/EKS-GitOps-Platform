@@ -1,4 +1,4 @@
-vpcId: vpc-049598ad3c8c01634
+vpcId: vpc-0d0e913e29e680e9c
 clusterName: Ahmad-EKS
 replicaCount: 1
 region: us-east-1

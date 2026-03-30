@@ -12,15 +12,19 @@ create_infra() {
   echo "Creating infrastructure..."
 
   cd networking
+  terraform init
   terraform apply -auto-approve
 
   cd ../eks
+  terraform init
   terraform apply -auto-approve
 
   cd ../add_ons
+  terraform init
   terraform apply -auto-approve
 
   cd ../argocd
+  terraform init
   terraform apply -auto-approve
 
   aws eks update-kubeconfig --region us-east-1 --name Ahmad-EKS
