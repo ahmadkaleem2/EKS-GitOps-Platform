@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'git@github.com:ahmadkaleem2/EKS-GitOps-Platform.git'
     targetRevision: main
-    path: apps
+    path: add_ons
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd  
