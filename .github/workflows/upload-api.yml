@@ -11,8 +11,8 @@ permissions:
   id-token: write
   contents: read
 
-env:
-  ECR_REPOSITORY: ahmad/eks-gpu-inference-platform
+# env:
+#   ECR_REPOSITORY: ahmad/eks-gpu-inference-platform
 
 jobs:
   build-and-push:

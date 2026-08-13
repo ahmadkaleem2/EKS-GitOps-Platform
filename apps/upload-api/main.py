@@ -64,4 +64,3 @@ async def upload_image(file: UploadFile = File(...)):
         "key": object_key,
     }
 
-
