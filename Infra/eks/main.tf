@@ -3,7 +3,7 @@ module "eks" {
   version = "21.15.1"
 
   name               = "Ahmad-EKS"
-  kubernetes_version = "1.35"
+  kubernetes_version = "1.36"
 
   addons = {
     coredns                = {}
@@ -36,9 +36,9 @@ module "eks" {
       # ami_type       = "AL2023_ARM_64_STANDARD"
       instance_types = ["t3.medium"]
       capacity_type  = "SPOT"
-      min_size     = 2
-      max_size     = 2
-      desired_size = 2
+      min_size     = 1
+      max_size     = 1
+      desired_size = 1
       iam_role_additional_policies = {
         "ssm_agent": "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
      }

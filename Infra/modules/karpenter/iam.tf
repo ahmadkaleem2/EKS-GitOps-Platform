@@ -3,7 +3,7 @@ data "aws_caller_identity" "current" {}
 
 resource "aws_iam_role" "this" {
 
-  name               = "albc-role-${var.eks_cluster_name}"
+  name               = "karpenter-role-${var.eks_cluster_name}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -15,7 +15,7 @@ resource "aws_iam_role" "this" {
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
           StringEquals = {
-            "${var.cluster_oidc_issuer_url}:sub" = "system:serviceaccount:kube-system:${var.service_account_name}",
+            "${var.cluster_oidc_issuer_url}:sub" = "system:serviceaccount:karpenter:karpenter",
 
           }
         }
@@ -25,8 +25,8 @@ resource "aws_iam_role" "this" {
 }
 
 resource "aws_iam_policy" "this" {                                                                                                       
-  policy = file("${path.module}/../custom_policies/load_balancer_controller.json")
-  name = "albc-policy-${var.eks_cluster_name}"        
+  policy = file("${path.module}/../custom_policies/karpenter.json")
+  name = "karpenter-policy-${var.eks_cluster_name}"        
 }
 
 

@@ -1,12 +1,10 @@
 locals {
 
   albc_values = {
-    "serviceAccount.create" = "true",
-    "serviceAccount.name"   = "aws-load-balancer-controller",
-    "clusterName"           = data.terraform_remote_state.eks.outputs.cluster_name,
     "region"                = "us-east-1",
     "vpcId"                 = data.terraform_remote_state.vpc.outputs.vpc_id
   }
+  
 
   cluster_oidc_issuer_url   = replace(data.aws_eks_cluster.eks.identity[0].oidc[0].issuer, "https://", "")
 
