@@ -1,6 +1,0 @@
-
-serviceAccount:
-  create: true
-  name: aws-for-fluent-bit
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::387867038403:role/fluent-bit-role-Ahmad-EKS
