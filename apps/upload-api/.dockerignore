@@ -1,0 +1,44 @@
+# Git
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Virtual environments
+.venv
+venv
+env
+ENV
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Tests / coverage
+.pytest_cache
+.coverage
+htmlcov
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Documentation
+README.md
