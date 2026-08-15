@@ -11,8 +11,8 @@ permissions:
   id-token: write
   contents: read
 
-# env:
-#   ECR_REPOSITORY: ahmad/eks-gpu-inference-platform
+env:
+  ECR_REPOSITORY: ahmad/eks-gpu-inference-platform
 
 jobs:
   build-and-push:
@@ -24,18 +24,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # - name: configure aws credentials
-      #   uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
-      #   with:
-      #     role-to-assume: arn:aws:iam::680688655542:role/Github_Actions_OIDC_role
-      #     role-session-name: samplerolesession
-      #     aws-region: us-east-1
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::680688655542:role/Github_Actions_OIDC_role # Change to reflect your IAM role’s ARN
+          role-to-assume: arn:aws:iam::387867038403:role/ahmad-github-oidc-role # Change to reflect your IAM role’s ARN
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: us-east-1
 
       - name: Login to Amazon ECR
         id: ecr-login
@@ -49,6 +43,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./apps/upload-api
-          push: true
+          push: false
           tags: |
             ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.tag.outputs.tag }}
