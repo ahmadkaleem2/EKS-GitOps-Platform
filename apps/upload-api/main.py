@@ -63,4 +63,3 @@ async def upload_image(file: UploadFile = File(...)):
         "bucket": S3_IMAGE_BUCKET,
         "key": object_key,
     }
-
