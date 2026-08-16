@@ -39,12 +39,12 @@ jobs:
 
       - name: Get short Git SHA
         id: tag
-        run: echo "tag=gpu-worker-$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+        run: echo "tag=inference-worker-$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./apps/gpu-worker
+          context: ./apps/inference-worker
           push: false
           tags: |
             ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.tag.outputs.tag }}
