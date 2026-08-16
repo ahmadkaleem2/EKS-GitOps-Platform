@@ -1,0 +1,50 @@
+name: Build and Push GPU Worker
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/gpu-worker/**"
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  ECR_REPOSITORY: ahmad/eks-gpu-inference-platform
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::387867038403:role/ahmad-github-oidc-role
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Get short Git SHA
+        id: tag
+        run: echo "tag=gpu-worker-$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./apps/gpu-worker
+          push: false
+          tags: |
+            ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.tag.outputs.tag }}
