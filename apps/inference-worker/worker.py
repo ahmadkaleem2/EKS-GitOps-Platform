@@ -237,8 +237,8 @@ def process_message(message, model):
 
     body = json.loads(message["Body"])
 
-    input_bucket = body["bucket"]
-    input_key = body["key"]
+    input_bucket = body["s3"]["bucket"]["name"]
+    input_key = body["s3"]["object"]["key"]
 
     logger.info(
         "Processing s3://%s/%s",

@@ -239,7 +239,7 @@ resource "kubernetes_deployment_v1" "inference_worker" {
                 container {
 
                     name  = local.inference_worker_base_k8s_name
-                    image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:inference-worker-36b2992"
+                    image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:inference-worker-b70cc31"
 
                     resources {
                         limits = {
