@@ -30,7 +30,7 @@ resource "aws_iam_role" "upload_api_service_account_role" {
             {
                 Effect = "Allow"
                 Principal = {
-                    Federated = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${local.cluster_oidc_issuer_url})}"
+                    Federated = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${local.cluster_oidc_issuer_url}"
                 }
                 Action = "sts:AssumeRoleWithWebIdentity"
                 Condition = {
@@ -88,7 +88,7 @@ resource "aws_iam_role" "inference_worker_service_account_role" {
             {
                 Effect = "Allow"
                 Principal = {
-                    Federated = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${local.cluster_oidc_issuer_url})"
+                    Federated = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${local.cluster_oidc_issuer_url}"
                 }
                 Action = "sts:AssumeRoleWithWebIdentity"
                 Condition = {

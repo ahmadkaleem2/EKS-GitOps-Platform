@@ -20,6 +20,7 @@ resource "kubernetes_deployment_v1" "upload-api" {
         }
     
         template {
+            
             metadata {
                 labels = {
                 app = local.upload_api_base_k8s_name
@@ -27,12 +28,18 @@ resource "kubernetes_deployment_v1" "upload-api" {
             }
     
             spec {
+
+                service_account_name = kubernetes_service_account_v1.upload-api.metadata[0].name
                 container {
                 name  = local.upload_api_base_k8s_name
-                image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:upload-api-ce450d4"
+                image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:upload-api-283db45"
         
                     port {
-                        container_port = 8080
+                        container_port = 8000
+                    }
+                    env {
+                        name = "S3_IMAGE_BUCKET"
+                        value = module.s3_bucket.s3_bucket_id
                     }
                 }
             }
@@ -53,7 +60,7 @@ resource "kubernetes_service_v1" "upload-api" {
     
         port {
             port        = 80
-            target_port = 8080
+            target_port = 8000
         }
     
         type = "ClusterIP"
@@ -201,8 +208,10 @@ resource "kubernetes_deployment_v1" "inference_worker" {
             app = local.inference_worker_base_k8s_name
         }
         }
+        
     
         template {
+            
             metadata {
                 labels = {
                 app = local.inference_worker_base_k8s_name
@@ -210,9 +219,50 @@ resource "kubernetes_deployment_v1" "inference_worker" {
             }
     
             spec {
+                service_account_name = kubernetes_service_account_v1.inference_worker.metadata[0].name
+                
+                affinity {
+                    node_affinity {
+                        required_during_scheduling_ignored_during_execution {
+                            node_selector_term {
+                                match_expressions {
+                                    key      = "nvidia.com/gpu.present"
+                                    operator = "In"
+                                    values   = ["true"]
+                                }
+                            }
+                        }
+                    }
+                }
+
+
                 container {
-                name  = local.inference_worker_base_k8s_name
-                image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform"
+
+                    name  = local.inference_worker_base_k8s_name
+                    image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:inference-worker-283db45"
+
+                    resources {
+                        limits = {
+                            "nvidia.com/gpu" = "1"
+                        }
+                    }
+        
+                    env {
+                        name = "MODEL_PATH"
+                        value = module.s3_bucket.s3_bucket_id
+                    }
+                    env {
+                        name = "MODEL_BUCKET"
+                        value = module.s3_bucket.s3_bucket_id
+                    }
+                    env {
+                        name = "RESULTS_BUCKET"
+                        value = module.s3_bucket.s3_bucket_id
+                    }
+                    env {
+                        name = "SQS_QUEUE_URL"
+                        value = module.sqs.queue_url
+                    }
                 }
             }
         }

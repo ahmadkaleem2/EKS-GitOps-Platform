@@ -44,7 +44,7 @@ resource "kubernetes_manifest" "gpu_node_pool" {
             {
               key      = "node.kubernetes.io/instance-type"
               operator = "In"
-              values   = ["g5g.xlarge"]
+              values   = ["g5g.xlarge", "g5g.2xlarge"]
             }
           ]
 
@@ -114,6 +114,15 @@ resource "kubernetes_manifest" "gpu_ec2_node_class" {
         {
           tags = {
             "kubernetes.io/cluster/Ahmad-EKS" = "owned"
+          }
+        }
+      ]
+      blockDeviceMappings = [
+        {
+          deviceName = "/dev/xvda"
+          ebs = {
+            volumeSize = "50Gi"
+            volumeType = "gp3"
           }
         }
       ]

@@ -46,5 +46,6 @@ jobs:
         with:
           context: ./apps/inference-worker
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: |
             ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.tag.outputs.tag }}
