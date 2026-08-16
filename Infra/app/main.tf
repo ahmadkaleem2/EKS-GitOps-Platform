@@ -29,7 +29,7 @@ resource "kubernetes_deployment_v1" "upload-api" {
             spec {
                 container {
                 name  = local.upload_api_base_k8s_name
-                image = "nginx:alpine"
+                image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:upload-api-ce450d4"
         
                     port {
                         container_port = 8080
@@ -212,7 +212,7 @@ resource "kubernetes_deployment_v1" "inference_worker" {
             spec {
                 container {
                 name  = local.inference_worker_base_k8s_name
-                image = "nginx:alpine"
+                image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform"
                 }
             }
         }
