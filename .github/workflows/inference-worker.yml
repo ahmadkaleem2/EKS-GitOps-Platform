@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "apps/gpu-worker/**"
+      - "apps/inference-worker/**"
 
 permissions:
   id-token: write
