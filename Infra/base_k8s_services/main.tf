@@ -5,6 +5,13 @@ module "albc" {
     eks_cluster_name = data.terraform_remote_state.eks.outputs.cluster_name
 }
 
+module "keda" {
+    source = "../modules/keda"
+    values = {}
+    cluster_oidc_issuer_url = local.cluster_oidc_issuer_url
+    eks_cluster_name = data.terraform_remote_state.eks.outputs.cluster_name
+}
+
 module "karpenter" {
     source = "../modules/karpenter"
     values = {}

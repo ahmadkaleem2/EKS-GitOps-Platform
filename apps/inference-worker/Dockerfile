@@ -13,7 +13,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # Upgrade pip
-RUN python3 -m pip install --upgrade pip
+# RUN python3 -m pip install --upgrade pip
 
 # Install CUDA-enabled PyTorch
 RUN pip3 install --no-cache-dir \
