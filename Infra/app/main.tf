@@ -203,6 +203,13 @@ resource "kubernetes_deployment_v1" "inference_worker" {
     spec {
         replicas = 1
     
+        strategy {
+          rolling_update {
+            max_unavailable = "100%"
+            max_surge       = "0"
+          }
+        }
+
         selector {
         match_labels = {
             app = local.inference_worker_base_k8s_name
@@ -239,7 +246,7 @@ resource "kubernetes_deployment_v1" "inference_worker" {
                 container {
 
                     name  = local.inference_worker_base_k8s_name
-                    image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:inference-worker-b70cc31"
+                    image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:inference-worker-bf4b58d"
 
                     resources {
                         limits = {
