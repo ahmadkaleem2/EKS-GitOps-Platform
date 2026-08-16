@@ -39,12 +39,12 @@ resource "kubernetes_manifest" "gpu_node_pool" {
             {
               key      = "karpenter.sh/capacity-type"
               operator = "In"
-              values   = ["spot"]
+              values   = ["spot", "on-demand"]
             },
             {
               key      = "node.kubernetes.io/instance-type"
               operator = "In"
-              values   = ["g5g.xlarge", "g5g.2xlarge"]
+              values   = ["g4dn.xlarge"]#"g5g.xlarge", "g5g.2xlarge"]
             }
           ]
 
@@ -96,8 +96,8 @@ resource "kubernetes_manifest" "gpu_ec2_node_class" {
 
       amiSelectorTerms = [
         {
-          # id = "ami-0ec20d5fad1326c34" # x86
-          id = "ami-08bd9fc5b27a5f984" # arm
+          id = "ami-0ec20d5fad1326c34" # x86
+          # id = "ami-08bd9fc5b27a5f984" # arm
 
         }
       ]

@@ -221,25 +221,25 @@ resource "kubernetes_deployment_v1" "inference_worker" {
             spec {
                 service_account_name = kubernetes_service_account_v1.inference_worker.metadata[0].name
                 
-                affinity {
-                    node_affinity {
-                        required_during_scheduling_ignored_during_execution {
-                            node_selector_term {
-                                match_expressions {
-                                    key      = "nvidia.com/gpu.present"
-                                    operator = "In"
-                                    values   = ["true"]
-                                }
-                            }
-                        }
-                    }
-                }
+                # affinity {
+                #     node_affinity {
+                #         required_during_scheduling_ignored_during_execution {
+                #             node_selector_term {
+                #                 match_expressions {
+                #                     key      = "nvidia.com/gpu.present"
+                #                     operator = "In"
+                #                     values   = ["true"]
+                #                 }
+                #             }
+                #         }
+                #     }
+                # }
 
 
                 container {
 
                     name  = local.inference_worker_base_k8s_name
-                    image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:inference-worker-4a3a707"
+                    image = "680688655542.dkr.ecr.us-east-1.amazonaws.com/ahmad/eks-gpu-inference-platform:inference-worker-36b2992"
 
                     resources {
                         limits = {
